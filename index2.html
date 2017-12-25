@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div>domain-<b>b</b> ajax to domain-<b>a</b> failure</div>
+<div>Failed to load http://domain-a.test/api.php: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://domain-b.test' is therefore not allowed access.</div>
+<br />
+<div id="container"></div>
+<script type="text/javascript">
+    $.ajax({
+        url: "http://domain-a.test/api.php"
+    }).done(function(result) {
+        console.log(JSON.parse(result).code);
+        $("#container").text('ajax done, code: ' + JSON.parse(result).code);
+    }).fail(function(result) {
+        console.log(result);
+        $("#container").text('ajax fail: ' + result.statusText);
+    });
+</script>
+</body>
+</html>

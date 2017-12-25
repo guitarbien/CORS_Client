@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div>domain-<b>b</b> ajax to domain-<b>a</b> success</div>
+<div>api header allow <b>*</b> or <b>domain-b.test</b></div>
+<br />
+<div id="container"></div>
+<script type="text/javascript">
+    $.ajax({
+        url: "http://domain-a.test/api-need-login.php",
+        data: { verify: true },
+        method: "POST"
+    }).done(function(result) {
+        console.log(result);
+        // console.log(JSON.parse(result).code);
+        // $("#container").text('ajax done, code: ' + JSON.parse(result).code);
+    }).fail(function(result) {
+        console.log(result);
+        $("#container").text('ajax fail: ' + result.statusText);
+    });
+</script>
+</body>
+</html>
